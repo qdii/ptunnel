@@ -814,7 +814,7 @@ void*		pt_proxy(void *args) {
 				//pt_log(kLog_verbose, "pcap captured %d packets - handling them..\n", pc.pkt_q.elems);
 				while (pc.pkt_q.head) {
 					cur						= pc.pkt_q.head;
-					memset(&addr, sizeof(struct sockaddr), 0);
+					memset(&addr, 0, sizeof(struct sockaddr));
 					addr.sin_family			= AF_INET;
 					addr.sin_addr.s_addr	= *(in_addr_t*)&(((ip_packet_t*)(cur->data))->src_ip);
 					handle_packet(cur->data, cur->bytes, 1, &addr, fwd_sock);
